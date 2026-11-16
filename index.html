@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Adeeb Tarzi, Electronics Engineering student at SFU: PCB design, bench testing, RacerBots F1TENTH car, HAVEN (1st place, ESSS Engineering Competition 2026).">
+<title>Adeeb Tarzi · Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15181d; --ink-2:#3d434c; --ink-3:#6b7280; --rule:#dde1e6; --paper:#f6f5f1; --card:#ffffff;
+    --mask:#1d5c43; --mask-soft:#e6efe9; --copper:#a5571b; --copper-soft:#f6ebe1; --blue:#1f4e8c; --blue-soft:#e7eef8;
+    --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+    --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+  a{color:var(--mask);text-decoration-thickness:1px;text-underline-offset:2px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  header.top{background:var(--ink);color:#f3f4f6;padding:56px 0 40px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.10;
+    background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:28px 28px}
+  header.top .wrap{position:relative;z-index:1}
+  .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#9ad1b6;margin:0 0 10px}
+  h1{font-size:clamp(34px,6vw,54px);line-height:1.05;margin:0 0 12px;font-weight:700;letter-spacing:-.01em}
+  .lede{font-size:18px;color:#cfd4da;max-width:720px;margin:0 0 22px}
+  .contact{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px;margin:0 0 22px;padding:0;list-style:none}
+  .contact a{color:#f3f4f6}
+  .contact span.k{font-family:var(--mono);font-size:12px;color:#8b95a1;margin-right:6px;text-transform:uppercase;letter-spacing:.06em}
+  .pdf{display:inline-block;margin-left:10px;color:#f3f4f6;border:1px solid #5b6470;font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px;text-decoration:none}
+  .pdf:hover{border-color:#9ad1b6;color:#9ad1b6}
+  .avail{display:inline-block;background:#9ad1b6;color:#0f2a1f;font-weight:600;font-size:14px;padding:6px 12px;border-radius:999px}
+
+  /* Index */
+  nav.index{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:-22px 0 0;position:relative;z-index:2}
+  nav.index a{display:block;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  nav.index a:hover{border-color:var(--mask)}
+  nav.index .n{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+  nav.index .t{display:block;font-weight:600;font-size:15px;line-height:1.3;margin-top:4px}
+  nav.index .s{display:block;font-size:13px;color:var(--ink-3);margin-top:4px}
+
+  /* Project */
+  section.proj{padding:56px 0 8px;scroll-margin-top:16px}
+  .proj-head{display:flex;gap:18px;align-items:baseline;border-top:2px solid var(--ink);padding-top:14px;margin-bottom:6px}
+  .proj-num{font-family:var(--mono);font-size:14px;color:var(--ink-3)}
+  h2{font-size:clamp(24px,3.4vw,32px);line-height:1.15;margin:0;font-weight:700;letter-spacing:-.005em}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px;color:var(--ink-2);margin:10px 0 22px}
+  .meta .sep{color:var(--rule)}
+  .chip{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid;white-space:nowrap}
+  .chip.green{color:var(--mask);background:var(--mask-soft);border-color:#bcd6c7}
+  .chip.copper{color:var(--copper);background:var(--copper-soft);border-color:#e7c8ac}
+  .chip.blue{color:var(--blue);background:var(--blue-soft);border-color:#c2d3ea}
+  .chip.grey{color:var(--ink-2);background:#eef0f2;border-color:var(--rule)}
+
+  .grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:32px;align-items:start}
+  .summary{font-size:17px;margin:0 0 16px;color:var(--ink)}
+  h3{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:22px 0 8px;font-weight:500}
+  ul.did{margin:0;padding-left:18px}
+  ul.did li{margin:0 0 8px}
+  ul.did li::marker{color:var(--mask)}
+  .note{font-size:14px;color:var(--ink-2);background:#eef0f2;border-left:3px solid var(--ink-3);padding:10px 14px;border-radius:0 6px 6px 0;margin:16px 0 0}
+
+  aside.spec{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px 18px 8px}
+  aside.spec h3{margin-top:0}
+  table.kv{width:100%;border-collapse:collapse;font-size:14px}
+  table.kv td{padding:7px 0;border-bottom:1px solid #eceef1;vertical-align:top}
+  table.kv tr:last-child td{border-bottom:none}
+  table.kv td:first-child{color:var(--ink-3);padding-right:12px;width:44%}
+  table.kv td.v{font-family:var(--mono);font-size:13.5px;color:var(--ink)}
+  .tag-m{font-family:var(--mono);font-size:11px;color:var(--mask);margin-left:4px}
+  .tag-c{font-family:var(--mono);font-size:11px;color:var(--copper);margin-left:4px}
+  .legend{font-size:12px;color:var(--ink-3);margin:6px 0 10px}
+
+  /* Gallery */
+  .gallery{display:grid;gap:12px;margin:26px 0 0}
+  .g-buck{grid-template-columns:1fr 1fr 1fr;grid-template-areas:"a b c" "d d e"}
+  .g-buck figure:nth-child(1){grid-area:a}.g-buck figure:nth-child(2){grid-area:b}.g-buck figure:nth-child(3){grid-area:c}
+  .g-buck figure:nth-child(4){grid-area:d}.g-buck figure:nth-child(5){grid-area:e}
+  .g-two{grid-template-columns:1fr 1fr}
+  .g-haven figure .ph{height:auto;aspect-ratio:16/9}
+  .g-rb{grid-template-columns:1.4fr 1fr}
+  figure{margin:0;background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  figure .ph{background:#e9ebee;display:flex;align-items:center;justify-content:center;flex:none;min-height:0;overflow:hidden;cursor:zoom-in}
+  figure img{display:block;width:100%;height:100%;object-fit:cover}
+  figure.contain img{object-fit:contain;background:#fff}
+  figcaption{font-size:13px;color:var(--ink-2);padding:9px 12px;border-top:1px solid #eceef1;line-height:1.4}
+  .h-200 .ph{height:200px}.h-260 .ph{height:260px}.h-340 .ph{height:340px}.h-420 .ph{height:420px}
+
+  /* Skills */
+  section.skills{padding:56px 0 24px}
+  .sk{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .sk div{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+  .sk h3{margin:0 0 8px}
+  .sk p{margin:0;font-size:15px}
+  footer{border-top:1px solid var(--rule);margin-top:32px;padding:20px 0 40px;font-size:13px;color:var(--ink-3)}
+
+  /* Lightbox */
+  #lb{position:fixed;inset:0;background:rgba(10,12,15,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:24px;cursor:zoom-out}
+  #lb.on{display:flex}
+  #lb img{max-width:100%;max-height:88vh;border-radius:6px;background:#fff}
+  #lb p{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#e5e7eb;font-size:14px;margin:0;padding:0 24px}
+
+  @media screen and (max-width:860px){
+    nav.index{grid-template-columns:1fr 1fr}
+    .grid{grid-template-columns:1fr}
+    .sk{grid-template-columns:1fr}
+    .g-buck{grid-template-columns:1fr 1fr;grid-template-areas:"a b" "c c" "d d" "e e"}
+    .g-two,.g-rb{grid-template-columns:1fr}
+  }
+  @media screen and (max-width:520px){
+    nav.index{grid-template-columns:1fr}
+    .g-buck{grid-template-columns:1fr;grid-template-areas:"a" "b" "c" "d" "e"}
+    header.top{padding-top:40px}
+  }
+
+  /* Print / PDF */
+  @page{size:Letter;margin:0.5in 0.55in}
+  @media print{
+    body{background:#fff;font-size:10.5pt;line-height:1.45}
+    .wrap{max-width:none;padding:0}
+    header.top{background:#fff;color:var(--ink);padding:0 0 10px;border-bottom:2px solid var(--ink)}
+    header.top::after{display:none}
+    .eyebrow{color:var(--mask)}
+    h1{font-size:28pt}
+    .lede{color:var(--ink-2);font-size:11.5pt;margin-bottom:10px;max-width:none}
+    .contact{margin-bottom:10px;font-size:10pt}
+    .contact a{color:var(--ink)}
+    .avail{background:var(--mask-soft);color:var(--mask);border:1px solid #bcd6c7}
+    nav.index{margin:14px 0 0;gap:8px}
+    nav.index a{box-shadow:none;padding:9px 11px}
+    section.proj{padding:0;break-before:page}
+    section#buck{break-before:auto;padding-top:16px}
+    .g-rb .h-420 .ph{height:250px}
+    .g-haven figure .ph{height:auto}
+    section.skills{padding:18px 0 0}
+    .proj-head{padding-top:8px}
+    .meta{margin:6px 0 12px}
+    .grid{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+    .summary{font-size:11pt;margin-bottom:8px}
+    h3{margin:12px 0 5px;font-size:8.5pt}
+    ul.did li{margin-bottom:4px}
+    aside.spec{padding:10px 12px 4px}
+    table.kv{font-size:9pt} table.kv td{padding:4px 0} table.kv td.v{font-size:8.8pt}
+    .gallery{margin-top:12px;gap:8px}
+    figure{break-inside:avoid}
+    figcaption{font-size:8.5pt;padding:5px 8px}
+    .h-200 .ph{height:125px}.h-260 .ph{height:150px}.h-340 .ph{height:190px}.h-420 .ph{height:230px}
+    .g-buck .h-340 .ph{height:120px}
+    .note{font-size:9pt;padding:6px 10px;margin-top:10px}
+    .sk{gap:8px} .sk div{padding:10px 12px} .sk p{font-size:9.5pt}
+    footer{margin-top:14px;padding:8px 0 0;font-size:8.5pt}
+    #lb{display:none!important}
+    main.wrap{display:flex;flex-direction:column}
+    main > nav.index{order:1;display:grid!important;grid-template-columns:1fr 1fr;margin-top:18px}
+    main > section.skills{order:2;break-before:auto}
+    main > section.proj{order:3}
+    main > footer{order:4}
+    section#buck{break-before:page!important;padding-top:0!important}
+    body{font-size:9.8pt;line-height:1.4}
+    .summary{font-size:10.3pt}
+    .g-buck .h-340 .ph{height:112px}
+    .g-buck .h-260 .ph{height:112px}
+    .g-rb .h-420 .ph{height:250px}
+    .grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr)!important}
+    .g-haven{grid-template-columns:1fr 1fr}
+    a{text-decoration:none}
+    .web-only{display:none}
+  }
+  @media screen{.print-only{display:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Engineering portfolio · Electronics</p>
+    <h1>Adeeb Tarzi</h1>
+    <p class="lede">Third-year Engineering Science (Electronics) student at Simon Fraser University. Hardware Team Member at SFU RacerBots and Electronics &amp; Sensor Integration Researcher at Sentia Technologies. This portfolio covers four projects, from a PCB I took from calculations to bench measurements to a competition-winning evacuation app.</p>
+    <ul class="contact">
+      <li><span class="k">Email</span><a href="mailto:ata210@sfu.ca">ata210@sfu.ca</a></li>
+      <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/adeeb-tarzi">linkedin.com/in/adeeb-tarzi</a></li>
+      <li><span class="k">GitHub</span><a href="https://github.com/AdeebTarzi">github.com/AdeebTarzi</a></li>
+      <li><span class="k">Location</span>Port Coquitlam, BC</li>
+    </ul>
+    <span class="avail">Seeking an 8–12 month co-op starting January 2027</span>
+    <a class="pdf web-only" href="Adeeb_Tarzi_Portfolio.pdf">Download PDF</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="index" aria-label="Projects">
+    <a href="#buck"><span class="n">01</span><span class="t">AP63201 12 V-to-5 V buck converter</span><span class="s">Personal · fabricated and tested</span></a>
+    <a href="#racerbots"><span class="n">02</span><span class="t">SFU RacerBots F1TENTH car</span><span class="s">Hardware team · build and calibration</span></a>
+    <a href="#haven"><span class="n">03</span><span class="t">HAVEN tsunami evacuation app</span><span class="s">1st place · ESSS Engineering Competition</span></a>
+    <a href="#sentia"><span class="n">04</span><span class="t">Sentia Technologies</span><span class="s">Sensor test chamber and measurement</span></a>
+  </nav>
+
+  <!-- 01 BUCK -->
+  <section class="proj" id="buck">
+    <div class="proj-head"><span class="proj-num">01</span><h2>12 V-to-5 V, 2 A buck converter PCB: fabricated and tested</h2></div>
+    <div class="meta">
+      <span>Personal project</span><span class="sep">|</span><span>Oct 2026 – Present</span>
+      <span class="chip green">No-load verified</span><span class="chip copper">Load testing next</span>
+    </div>
+    <div class="grid">
+      <div>
+        <p class="summary">A synchronous buck converter around the Diodes AP63201, taken from calculations to a fabricated board on my bench. I wanted something harder than a fixed-output regulator, so I set the design targets and sized the parts myself.</p>
+        <h3>What I did</h3>
+        <ul class="did">
+          <li>Calculated the feedback divider (158 kΩ / 30.1 kΩ) and sized a 10 µH inductor for 0.58 A ripple at 500 kHz.</li>
+          <li>Drew the schematic and 2-layer PCB in Altium Designer, with the input capacitor at the IC, a short switch node, and a ground plane with stitching vias. Ran DRC and built the BOM.</li>
+          <li>Had the boards fabricated and assembled by JLCPCB, then hand-soldered the inductor (hot air and solder paste) and the screw terminals on two boards.</li>
+          <li>During bring-up, the output read about 10.9 V. I traced it to terminal solder joints that weren't secure, using continuity and resistance checks with a DMM, reworked them and corrected the bench-supply current-limit setup.</li>
+          <li>No-load testing: both boards regulate at about 5.02 V and stay within about 2 mV across 8.2–12.1 V input, measured on a 5½-digit Agilent 34405A DMM.</li>
+        </ul>
+        <h3>Next</h3>
+        <p style="margin:0">Load tests at 0.5, 1 and 2 A (input and output voltage and current, for efficiency), output ripple at 2 A on the scope, and IC temperature rise, each compared against my calculations.</p>
+      </div>
+      <aside class="spec">
+        <h3>Key numbers</h3>
+        <p class="legend"><span class="tag-c">calc</span> = design calculation · <span class="tag-m">meas</span> = measured on the bench</p>
+        <table class="kv">
+          <tr><td>Controller</td><td class="v">AP63201WU-7</td></tr>
+          <tr><td>Target</td><td class="v">12 V → 5 V, 2 A<span class="tag-c">calc</span></td></tr>
+          <tr><td>Feedback divider</td><td class="v">158 kΩ / 30.1 kΩ<br>0.8 V × (1 + 158/30.1) = 4.999 V<span class="tag-c">calc</span></td></tr>
+          <tr><td>Inductor ripple</td><td class="v">0.58 A @ 500 kHz, 10 µH<span class="tag-c">calc</span></td></tr>
+          <tr><td>Output, no load</td><td class="v">5.019–5.023 V<span class="tag-m">meas</span></td></tr>
+          <tr><td>Setpoint error</td><td class="v">≈ +0.4% vs 4.999 V<span class="tag-m">meas</span></td></tr>
+          <tr><td>Line regulation</td><td class="v">within ≈ 2 mV, 8.2–12.1 V in<span class="tag-m">meas</span></td></tr>
+          <tr><td>No-load input current</td><td class="v">≈ 0.01 A @ 12.1 V<span class="tag-m">meas</span></td></tr>
+          <tr><td>Tools</td><td class="v">Altium Designer, hot-air soldering, DMM, bench supply</td></tr>
+        </table>
+      </aside>
+    </div>
+    <div class="gallery g-buck">
+      <figure class="h-340"><div class="ph"><img src="img/buck_board.jpg" alt="Assembled AP63201 buck converter board with orange screw terminals and a black inductor"></div><figcaption>Assembled board: inductor and terminals hand-soldered.</figcaption></figure>
+      <figure class="h-340 contain"><div class="ph"><img src="img/buck_render.jpg" alt="Altium 3D render of the buck converter PCB"></div><figcaption>Altium 3D render.</figcaption></figure>
+      <figure class="h-340"><div class="ph"><img src="img/buck_supply.jpg" alt="GW Instek bench supply showing 12.1 V and 0.01 A"></div><figcaption>Bench supply at 12.1 V in, about 0.01 A at no load.</figcaption></figure>
+      <figure class="h-260 contain"><div class="ph"><img src="img/buck_schematic.jpg" alt="Altium schematic of the AP63201 buck converter"></div><figcaption>Schematic: AP63201, 10 µH inductor, 158 kΩ / 30.1 kΩ feedback divider.</figcaption></figure>
+      <figure class="h-260 contain"><div class="ph"><img src="img/buck_layout.jpg" alt="Altium 2-layer PCB layout with ground pour"></div><figcaption>2-layer layout with ground plane and stitching vias.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 02 RACERBOTS -->
+  <section class="proj" id="racerbots">
+    <div class="proj-head"><span class="proj-num">02</span><h2>SFU RacerBots: F1TENTH autonomous race car</h2></div>
+    <div class="meta">
+      <span>Hardware Team Member</span><span class="sep">|</span><span>Jan 2026 – Present</span>
+      <span class="chip grey">Team build</span><span class="chip green">Team won its first race, Nov 2026</span>
+    </div>
+    <div class="grid">
+      <div>
+        <p class="summary">I joined RacerBots when the club was just starting and had no car. We built a 1/10-scale autonomous car (NVIDIA Jetson, LiDAR, VESC motor controller, ROS 2) as a team. The club now runs two cars, and in November 2026 RacerBots won its first F1TENTH race at UVic.</p>
+        <h3>Hardware I built and wired</h3>
+        <ul class="did">
+          <li>Soldered the car's power board and wired the 3S battery into it; the board feeds the Jetson, LiDAR and VESC.</li>
+          <li>Did the Jetson integration and power wiring, and checked power rails and signals with an oscilloscope and DMM during bring-up.</li>
+          <li>Mounted and wired the LiDAR, wired the steering servo and BLDC motor to the VESC, and 3D-printed mounts for the car.</li>
+        </ul>
+        <h3>Calibration and tuning</h3>
+        <ul class="did">
+          <li>Took on odometry calibration when SLAM was failing to close loops. I first cleared three bring-up faults (Linux input-group access, a controller mode swap, and VESC servo output disabled). Then I found a parameter-reading and signed-gain bug in the calibration wizard and directed an AI-written fix.</li>
+          <li>Three forward trials showed 2.63% odometry error before adjustment (4.155 m measured vs 4.267 m actual). I corrected the odometry gain, and SLAM loops then closed.</li>
+          <li>Retuned steering so full lock matched on both sides at 25° (it had been 19.5° left vs 12.3° right). I also specified fixes to the team's steering wizard: sample filtering, blocking invalid values, and config backups.</li>
+          <li>Fixed a launch stutter by adjusting the VESC open-loop ERPM; a re-test showed the stutter was gone.</li>
+          <li>Wrote the team's VESC Tool user and sensorless startup tuning guide, so new members can tune the car without senior help.</li>
+        </ul>
+      </div>
+      <aside class="spec">
+        <h3>At a glance</h3>
+        <table class="kv">
+          <tr><td>Platform</td><td class="v">F1TENTH / RoboRacer, 1/10 scale</td></tr>
+          <tr><td>Compute</td><td class="v">NVIDIA Jetson</td></tr>
+          <tr><td>Motor control</td><td class="v">VESC, BLDC motor, steering servo</td></tr>
+          <tr><td>Power</td><td class="v">3S battery → power board</td></tr>
+          <tr><td>Odometry error</td><td class="v">2.63% before gain correction<span class="tag-m">meas</span></td></tr>
+          <tr><td>Steering lock</td><td class="v">19.5° / 12.3° → 25° / 25°</td></tr>
+          <tr><td>Software</td><td class="v">ROS 2, Linux, SSH, Git</td></tr>
+          <tr><td>Bench tools</td><td class="v">Oscilloscope, DMM, bench supply</td></tr>
+        </table>
+      </aside>
+    </div>
+    <div class="gallery g-rb">
+      <figure class="h-420"><div class="ph"><img src="img/rb_team.jpg" alt="Adeeb and a teammate working on laptops beside the RacerBots car"></div><figcaption>Working on the car with a teammate.</figcaption></figure>
+      <figure class="h-420"><div class="ph"><img src="img/rb_bench.jpg" alt="Adeeb leaning over the RacerBots car at a lab bench"></div><figcaption>Building the car in the SFU lab.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 03 HAVEN -->
+  <section class="proj" id="haven">
+    <div class="proj-head"><span class="proj-num">03</span><h2>HAVEN: Hazard-Aware Voice Evacuation Navigator</h2></div>
+    <div class="meta">
+      <span>SFU ESSS Engineering Competition 2026, programming</span><span class="sep">|</span><span>Nov 2026</span>
+      <span class="chip copper">1st place</span><span class="chip blue">Qualified for WEC 2027, Regina</span>
+    </div>
+    <div class="grid">
+      <div>
+        <p class="summary">A one-day build with my partner Victor Duong at our first programming competition. The problem was revealed on the day: tell someone in a Victoria and Oak Bay tsunami scenario exactly where to go and how to get there. You tap or say where you are, and HAVEN routes you to the nearest safe point (at least 20 m high and outside the flood zone), with travel time, directions and a backup route.</p>
+        <h3>How it works</h3>
+        <ul class="did">
+          <li>Routing uses Dijkstra's algorithm with a "super-sink," so one search finds the nearest of all safe points. It prefers routes that avoid the flood zone, even if they're longer.</li>
+          <li>The backup route closes each road of the main route in turn and re-runs the search.</li>
+          <li>It re-plans live when a road closes, a shelter fills up or the flood zone spreads, with colour-coded alerts.</li>
+          <li>Voice control runs through VoiceOS over MCP: an AI agent calls 12 tools that use the same planning function as the screen.</li>
+          <li>It keeps working offline through a service worker, because networks fail first in a disaster.</li>
+        </ul>
+        <h3>How we built it</h3>
+        <ul class="did">
+          <li>I did most of the build, running several Claude Code agents in parallel on separate parts, with written specs and automated tests as the check.</li>
+          <li>783 automated tests check every start point against reference answers worked out by hand before any code was written.</li>
+          <li>Victor helped with the VoiceOS test cases and the presentation slides.</li>
+        </ul>
+        <p class="note">Code and README: <a href="https://github.com/AdeebTarzi/Haven">github.com/AdeebTarzi/Haven</a></p>
+      </div>
+      <aside class="spec">
+        <h3>At a glance</h3>
+        <table class="kv">
+          <tr><td>Result</td><td class="v">1st place, programming category</td></tr>
+          <tr><td>Next</td><td class="v">Western Engineering Competition, Jan 2027</td></tr>
+          <tr><td>Team</td><td class="v">2 people (Adeeb Tarzi, Victor Duong)</td></tr>
+          <tr><td>Build time</td><td class="v">One competition day</td></tr>
+          <tr><td>Stack</td><td class="v">TypeScript, React, Vite (agent-written)</td></tr>
+          <tr><td>Voice</td><td class="v">VoiceOS over MCP, 12 tools</td></tr>
+          <tr><td>Tests</td><td class="v">783 (vitest), hand-worked reference answers</td></tr>
+          <tr><td>Offline</td><td class="v">Service worker</td></tr>
+        </table>
+      </aside>
+    </div>
+    <div class="gallery g-two g-haven">
+      <figure class="h-340 contain"><div class="ph"><img src="img/haven_route.jpg" alt="HAVEN screen routing from point F to safe point H"></div><figcaption>Normal conditions: route from F to the nearest safe point, with a backup route.</figcaption></figure>
+      <figure class="h-340 contain"><div class="ph"><img src="img/haven_reroute.jpg" alt="HAVEN screen re-routing after road F-H closes"></div><figcaption>Road F–H closes: HAVEN re-plans to safe point E and raises an alert.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 04 SENTIA -->
+  <section class="proj" id="sentia">
+    <div class="proj-head"><span class="proj-num">04</span><h2>Sentia Technologies: sensor testing</h2></div>
+    <div class="meta">
+      <span>Electronics &amp; Sensor Integration Researcher, Burnaby</span><span class="sep">|</span><span>Oct 2026 – Present</span>
+      <span class="chip grey">New role</span>
+    </div>
+    <div class="grid">
+      <div>
+        <p class="summary">Sentia makes printed humidity and temperature sensors with interdigitated electrodes and tests them in a humidity chamber against a reference sensor. A known problem is trial-to-trial repeatability, since humidity can't be set the same way each trial. My first projects target that test setup.</p>
+        <h3>So far</h3>
+        <ul class="did">
+          <li>Wrote a one-page literature review on humidity and temperature sensing: relative humidity, temperature dependence, response and recovery, hysteresis, drift, and what a test chamber needs.</li>
+          <li>Designed a new humidity-chamber bottom in SolidWorks (with help from Claude Code) and 3D-printed it myself.</li>
+          <li>Proposed a four-channel sensor switching prototype (ESP32 + CD4052BE analog multiplexer), so one Keysight U1733C LCR meter can measure four sensor nodes. I presented it to my supervisor and the engineering team; it is at the proposal stage and not built yet.</li>
+          <li>Prepare sensor samples for humidity-chamber testing.</li>
+        </ul>
+      </div>
+      <aside class="spec">
+        <h3>At a glance</h3>
+        <table class="kv">
+          <tr><td>Product</td><td class="v">Printed humidity / temperature sensors (IDE)</td></tr>
+          <tr><td>Test setup</td><td class="v">Humidity chamber, reference sensor, ESP32-based dashboard</td></tr>
+          <tr><td>Built</td><td class="v">Chamber bottom (SolidWorks, 3D-printed)</td></tr>
+          <tr><td>Proposed</td><td class="v">4-channel MUX for one LCR meter</td></tr>
+        </table>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="proj-head"><span class="proj-num">—</span><h2>Tools and skills</h2></div>
+    <div class="sk" style="margin-top:18px">
+      <div><h3>Design</h3><p>Altium Designer (schematic, 2-layer PCB, DRC, BOM), LTspice, SolidWorks</p></div>
+      <div><h3>Bench and build</h3><p>Oscilloscope, 5½-digit DMM, bench power supply, semiconductor parameter analyzer, SMD and hot-air soldering, 3D printing</p></div>
+      <div><h3>Software</h3><p>C/C++, VHDL, MATLAB, Bash, Linux, ROS 2, Docker, Git, Claude Code</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="print-only">Web version and contact: linkedin.com/in/adeeb-tarzi · ata210@sfu.ca</span>
+    <span style="float:right">Updated November 2026</span>
+  </footer>
+</main>
+
+<div id="lb" role="dialog" aria-label="Enlarged image"><img alt=""><p></p></div>
+<script>
+  (function(){
+    var lb=document.getElementById('lb'), im=lb.querySelector('img'), cap=lb.querySelector('p');
+    document.querySelectorAll('figure .ph img').forEach(function(img){
+      img.addEventListener('click',function(){
+        im.src=img.src; im.alt=img.alt;
+        var fc=img.closest('figure').querySelector('figcaption'); cap.textContent=fc?fc.textContent:'';
+        lb.classList.add('on');
+      });
+    });
+    lb.addEventListener('click',function(){lb.classList.remove('on')});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on')});
+  })();
+</script>
+</body>
+</html>
