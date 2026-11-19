@@ -83,6 +83,8 @@
   .g-buck figure:nth-child(4){grid-area:d}.g-buck figure:nth-child(5){grid-area:e}
   .g-two{grid-template-columns:1fr 1fr}
   .g-haven figure .ph{height:auto;aspect-ratio:16/9}
+  figure.demo{margin:26px 0 0}
+  figure.demo video{display:block;width:100%;height:auto;background:#0b0d10}
   .g-rb{grid-template-columns:1.4fr 1fr}
   figure{margin:0;background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
   figure .ph{background:#e9ebee;display:flex;align-items:center;justify-content:center;flex:none;min-height:0;overflow:hidden;cursor:zoom-in}
@@ -168,6 +170,7 @@
     .g-rb .h-420 .ph{height:250px}
     .grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr)!important}
     .g-haven{grid-template-columns:1fr 1fr}
+    .g-haven figure:nth-child(n+3){display:none}
     a{text-decoration:none}
     .web-only{display:none}
   }
@@ -300,7 +303,7 @@
     </div>
     <div class="grid">
       <div>
-        <p class="summary">A one-day build with my partner Victor Duong at our first programming competition. The problem was revealed on the day: tell someone in a Victoria and Oak Bay tsunami scenario exactly where to go and how to get there. You tap or say where you are, and HAVEN routes you to the nearest safe point (at least 20 m high and outside the flood zone), with travel time, directions and a backup route.</p>
+        <p class="summary">A 7-hour build with my partner Victor Duong at our first programming competition. The problem was revealed on the day: tell someone in a Victoria and Oak Bay tsunami scenario exactly where to go and how to get there. You tap or say where you are, and HAVEN routes you to the nearest safe point (at least 20 m high and outside the flood zone), with travel time, directions and a backup route.</p>
         <h3>How it works</h3>
         <ul class="did">
           <li>Routing uses Dijkstra's algorithm with a "super-sink," so one search finds the nearest of all safe points. It prefers routes that avoid the flood zone, even if they're longer.</li>
@@ -315,7 +318,7 @@
           <li>783 automated tests check every start point against reference answers worked out by hand before any code was written.</li>
           <li>Victor helped with the VoiceOS test cases and the presentation slides.</li>
         </ul>
-        <p class="note">Code and README: <a href="https://github.com/AdeebTarzi/Haven">github.com/AdeebTarzi/Haven</a></p>
+        <p class="note">Code and README: <a href="https://github.com/AdeebTarzi/Haven">github.com/AdeebTarzi/Haven</a><span class="web-only"> · Slides: <a href="media/HAVEN_slides.pdf">HAVEN deck (PDF)</a></span></p>
       </div>
       <aside class="spec">
         <h3>At a glance</h3>
@@ -323,7 +326,7 @@
           <tr><td>Result</td><td class="v">1st place, programming category</td></tr>
           <tr><td>Next</td><td class="v">Western Engineering Competition, Jan 2027</td></tr>
           <tr><td>Team</td><td class="v">2 people (Adeeb Tarzi, Victor Duong)</td></tr>
-          <tr><td>Build time</td><td class="v">One competition day</td></tr>
+          <tr><td>Build time</td><td class="v">7 hours</td></tr>
           <tr><td>Stack</td><td class="v">TypeScript, React, Vite (agent-written)</td></tr>
           <tr><td>Voice</td><td class="v">VoiceOS over MCP, 12 tools</td></tr>
           <tr><td>Tests</td><td class="v">783 (vitest), hand-worked reference answers</td></tr>
@@ -331,9 +334,17 @@
         </table>
       </aside>
     </div>
+    <figure class="demo web-only">
+      <video controls preload="metadata" playsinline poster="media/haven_voice_demo_poster.jpg">
+        <source src="media/haven_voice_demo.mp4" type="video/mp4">
+      </video>
+      <figcaption>Voice demo (48 s, sound on): four spoken commands. HAVEN routes from F, reroutes when road F–H is blocked, routes from B, then switches to A when C is full. VoiceOS explains each answer out loud.</figcaption>
+    </figure>
     <div class="gallery g-two g-haven">
       <figure class="h-340 contain"><div class="ph"><img src="img/haven_route.jpg" alt="HAVEN screen routing from point F to safe point H"></div><figcaption>Normal conditions: route from F to the nearest safe point, with a backup route.</figcaption></figure>
       <figure class="h-340 contain"><div class="ph"><img src="img/haven_reroute.jpg" alt="HAVEN screen re-routing after road F-H closes"></div><figcaption>Road F–H closes: HAVEN re-plans to safe point E and raises an alert.</figcaption></figure>
+      <figure class="h-340 contain"><div class="ph"><img src="img/haven_warning.jpg" alt="HAVEN tsunami warning with hazard zones over B, F, H and M, routing from F to E"></div><figcaption>New flooding reported: you're inside the hazard zone, H is no longer safe, and HAVEN routes to E around every flooded point.</figcaption></figure>
+      <figure class="h-340 contain"><div class="ph"><img src="img/haven_crowded.jpg" alt="HAVEN capacity advisory: H 95% full, E recommended"></div><figcaption>Shelter H is 95% full: HAVEN recommends E instead and shows both options with the reason.</figcaption></figure>
     </div>
   </section>
 
